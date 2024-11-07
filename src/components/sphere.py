@@ -71,7 +71,9 @@ def trace(spheres_count, O, distance, lights, spheres):
             c2 = c2 + trace(spheres_count, p, r, lights, spheres) * 0.51
         return c2
 
-    return vec3(1 - distance.y(), 1 - distance.y(), 0.5 + distance.y())
+    # Gradient background
+    t = 0.5 * (distance.y() + 1.0)
+    return (1.0 - t) * vec3(1.0, 1.0, 1.0) + t * vec3(0.5, 0.7, 1.0)
 
 spheres = [
     Sphere(vec3(0, -1000, 0), vec3(1, 1, 1), 1000),
